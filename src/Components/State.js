@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
 import './CardStyle.css';
+import logo from '../Components/images/apptron.png';
 class State extends Component {
+    
     state={
         name:"",
         batchCode:"",
-        class:""
+        class:"",
+        student:[]
     }
+        
+    
 
+     formSubmit =(event) => {
+        event.preventDefault()
+
+        this.state.student.push({
+            name:this.state.name,
+            batchCode:this.state.batchCode,
+            class:this.state.class
+        })
+     }
     render() {
         return (
         <div className="bg-color">
@@ -14,13 +28,16 @@ class State extends Component {
                 <div className="row">
                     <div className="col-xl-12">
                     <div className="buttons">
-                    <button>POST</button>
+                    {/* <button onClick={this.formSubmit}>POST</button> */}
                     </div>
                         <div className="state">
                             <form>
+                                <img src={logo} alt="logo"></img>
                             <input type="text" placeholder="Enter your name" value={this.state.name} onChange={(val)=> (
                                 this.setState({
-                                    name:val.target.value
+                                    // if(this.state.name == ""){
+                                        name:val.target.value
+                                    
                                 })
                             )}  />
 
@@ -35,14 +52,22 @@ class State extends Component {
                                     class:val.target.value
                                 })
                             )}/>
+                               <button onClick={this.formSubmit}>POST</button>
                         </form>
-                            <div className="showData">
-                            <p><span className="span_1">Name:</span><span className="span_2">{this.state.name}</span></p> 
-                            <p><span className="span_1">Batch Code:</span><span className="span_2">{this.state.batchCode}</span></p> 
-                            <p><span className="span_1">Section:</span><span className="span_2">{this.state.class}</span></p> 
-                                
-                        </div>
+
                         </div>        
+                        {this.state.student.map((item,i)=>(
+                            <div key={i} >
+                            <div className="showData">
+                            <img src={logo} alt="logo"></img>
+                            <p><span className="span_1">Name:</span><span className="span_2">{item.name}</span></p> 
+                            <p><span className="span_1">Batch Code:</span><span className="span_2">{item.batchCode}</span></p> 
+                            <p><span className="span_1">Section:</span><span className="span_2">{item.class}</span></p>     
+                          </div>
+                                </div>
+                         ))}
+                            
+                         
                     </div>
                 </div>
             </div>
