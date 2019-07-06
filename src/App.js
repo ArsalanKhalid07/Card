@@ -1,12 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-import '../'
+import State from './Components/State';
+
 
 function App() {
   return (
     <div>
-     
+     <State/>
     </div>
   );
 }
